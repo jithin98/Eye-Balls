@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content:center;
+        background-image: radial-gradient(#dfa354 , #ef6c15);
+        height: 100vh;
+        }
+        .box{
+            display: flex;
+
+        }
+        .box .eye{
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: block;
+            background: #ffff;
+            margin: 0 20px;
+            border-radius: 50%;
+            box-shadow: 0 5px 45px rgba(0,0,0,0.2),
+                        inset 0 0 15px #ce8d39,
+                        inset 0 0 15px #ce8d39 ;
+        }
+   .box .eye::before{
+       content: '';
+       position: absolute;
+       top: 50%;
+       left: 35px;
+       transform: translate(-50%,-50%);
+       width: 45px;
+       height: 45px;
+       border-radius: 50%;
+       background: #000;
+       border: 10px solid rgb(19, 120, 214);
+    box-sizing: border-box;
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+  <div class="box">
+<div class="eye"></div>
+<div class="eye"></div>
+  </div>  
+
+ <script>
+      document.querySelector('body').addEventListener('mousemove',eyeball);
+
+      function eyeball(){
+          const eye = document.querySelectorAll('.eye');
+          eye.forEach(function(eye) {
+              let x = (eye.getBoundingClientRect().left) + (eye.clientWidth / 2);
+              let y = (eye.getBoundingClientRect().top) + (eye.clientHeight / 2);
+
+              let radian = Math.atan2(event.pageX - x, event.pageY - y);
+              let rotation = (radian * (180 / Math.PI) * -1) + 270;
+              eye.style.transform = "rotate("+rotation+"deg)"
+          });
+      }
+  </script>
+</body>
+</html>
